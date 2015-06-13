@@ -8,7 +8,7 @@ public class CountOnes {
 			if((input & 1)==1){
 				count++;
 			}
-			input =input>>1;
+			input =input>>>1;
 		}
 		return count;
 	}
