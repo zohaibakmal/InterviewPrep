@@ -9,6 +9,7 @@ public class MajorityElement {
 	 *		If the counter is 0, we set the current candidate to e and we set the counter to 1.
 	 *		If the counter is not 0, we increment or decrement the counter according to whether e is the current candidate.
 	 *	When we are done, the current candidate is the majority element, if there is a majority.
+	 *	algorithm at http://www.cs.utexas.edu/~moore/best-ideas/mjrty/index.html
 	 * */
     public int majorityElement(int[] nums) {
         int majorityElement = nums[0];
