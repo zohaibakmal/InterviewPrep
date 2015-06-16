@@ -28,7 +28,6 @@ public class ReverseInteger {
         }
         
         int result = 0;
-        boolean first = true;
         while (x>0){
             if (result > Integer.MAX_VALUE/10)
                 return 0;
