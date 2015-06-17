@@ -13,7 +13,7 @@ public class ContainsNearbyDuplicates {
                 if ((i-map.get(nums[i]))<=k){
                     return true;
                 }
-                map.put(nums[i], i);
+                map.put(nums[i], i); //ensures that we have the most recent mapping in
             }else{
                 map.put(nums[i], i);
             }
