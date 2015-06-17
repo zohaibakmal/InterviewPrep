@@ -3,42 +3,84 @@ package com.test;
 import java.util.Stack;
 
 public class MinStack {
-    int min;
-    Stack<Integer> stack;
-
-    public MinStack(){
-        stack=new Stack<>();
-    }
-
-    public void push(int x) {
-        if (stack.isEmpty()){
-            stack.push(0);
-            min=x;
+    
+	/*
+	 * We keep a second stack to keep track of minimum at each insertion.
+	 * */
+	
+	private Stack<Integer> internal = new Stack<Integer>();
+    private Stack <Integer> mins = new Stack<Integer>();    
+ 
+    public void push2(int x) {
+        if (internal.empty()){
+            mins.push(x);
+        }else if(x>=mins.peek()){
+            mins.push(mins.peek());
         }else{
-            stack.push(x-min);//Could be negative if min value needs to change
-            if (x<min) min=x;
+            mins.push(x);
+        }
+        internal.push(x);
+        
+    }
+ 
+    public void pop2() {
+        internal.pop();
+        mins.pop();
+    }
+ 
+    public int top2() {
+        return internal.peek();
+    }
+ 
+    public int getMin2() {
+        return mins.peek();
+    }
+	
+	
+	/*
+	 * Algorithm:
+	 * - Push
+	 *   - If we are pushing a value which is greater or equal to the current minimum, we push it right in.
+	 *   - If we are pushing in a value which is less than the current minimum, we push in the value 2*value-currentMin.
+	 *     - Next we set the new minimum to be the value
+	 * - Pop
+	 *   - If the value being popped is greater than currentMinimum, it is the right value.
+	 *   - If the value being popped is less than currentMinimum, our real value for pop is currentMinimum.
+	 *     - Next we set the new minimum to be 2*currentMinimum-poppedValue    -->poppedValue is the wrong value.
+	 *     
+	 * - Top
+	 *   - Same as pop.
+	 * 
+	 * */
+	Stack <Long> mainStack = new Stack<Long>();
+    int currentMin = Integer.MAX_VALUE;
+    
+    public void push(int x) {
+        if (x>=currentMin){
+            mainStack.push((long)x);
+        }else{
+        	mainStack.push((long) 2*x-currentMin);
+        	currentMin = x;
         }
     }
 
     public void pop() {
-        if (stack.isEmpty()) return;
-
-        int pop=stack.pop();
-
-        if (pop<0)  min=min-pop;//If negative, increase the min value
-
+        long pop = mainStack.pop();
+    	if (pop<currentMin){
+    		currentMin = (int) (2* (long)currentMin- pop);
+    	}
     }
 
     public int top() {
-        long top=stack.peek();
-        if (top>0){
-            return (int)(top+min);
+        long top = mainStack.peek();
+        if (top<currentMin){
+        	return currentMin;
         }else{
-           return (int)(min);
+        	return (int)top;
         }
     }
 
     public int getMin() {
-        return (int)min;
+        return currentMin;
     }
 }
