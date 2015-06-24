@@ -2,9 +2,15 @@ package com.test;
 
 public class Pow {
 
+	
+	/*
+	 * Divide the problem into sub-problems of size n/2.
+	 * E.g. x*x*x*x will be evaluated as (x*x) * (x*x)
+	 * */
+	
 	public double pow(double x, int n) {
 		if (n < 0) {
-			return 1 / power(x, -n);
+			return 1 / power(x, n);
 		} else {
 			return power(x, n);
 		}
@@ -14,12 +20,15 @@ public class Pow {
 		if (n == 0)
 			return 1;
 	 
-		double v = power(x, n / 2);
+		// storing the value here to make the code efficient
+		// we would only need to calculate the value for one sub-problem.
+		// the other sub-problem (which will be exactly the same) can use this result.
+		double val = power(x, n / 2);
 	 
 		if (n % 2 == 0) {
-			return v * v;
+			return val * val;
 		} else {
-			return v * v * x;
+			return val * val * x;
 		}
 	}
 	 	
