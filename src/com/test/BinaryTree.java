@@ -114,6 +114,23 @@ public class BinaryTree {
 	  }
   }
   
+  public void printItrPreOrder2(Node node){
+	  Stack <Node> parentStack = new Stack<Node>();
+	  parentStack.push(node);
+	  while (!parentStack.empty()){
+		  node = parentStack.pop();
+		  if (node!=null){
+			  visit(node);
+		  }
+		  if (node.right!=null){
+			  parentStack.push(node.right);
+		  }
+		  if (node.left!=null){
+			  parentStack.push(node.left);
+		  }
+	  }
+  }
+  
   public void printPreOrder(Node node){
 	  if (node==null)
 		  return;
@@ -209,7 +226,7 @@ public class BinaryTree {
 	  bt.insert(12);
 	  bt.insert(22);
 
-	  bt.printInOrder(bt.root);
+/*	  bt.printInOrder(bt.root);
 	  System.out.println();
 	  bt.printItrInOrder(bt.root);
 	  System.out.println();
@@ -223,7 +240,11 @@ public class BinaryTree {
 	  System.out.println("\nPost Order: ");
 	  bt.printItrPostOrder(bt.root);
 	  
-	  
+	  */
+	  System.out.println("Correct Preorder");
+	  bt.printPreOrder(bt.root);
+	  System.out.println("Test Preorder");
+	  bt.printItrPreOrder2(bt.root);
   }
   
 }

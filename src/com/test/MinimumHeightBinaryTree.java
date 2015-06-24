@@ -15,6 +15,18 @@ public class MinimumHeightBinaryTree {
 		}else
 			return 1+Math.min(minDepth(root.left), minDepth(root.right));        
 	}
+	
+	public int minDepth2(TreeNode root) {
+        if(root == null) return 0;
+        int left = minDepth2(root.left);
+        int right = minDepth2(root.right);
+        if (left==0 || right==0){
+            return Math.max(left,right)+1;
+        }else{
+            return 1+ Math.min(left,right);
+        }
+
+    }
 
 	public int minDepthIterative(TreeNode root) {
 		//Level order traversal
