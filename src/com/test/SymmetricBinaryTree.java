@@ -1,48 +1,62 @@
 package com.test;
 
-import java.util.Deque;
 import java.util.LinkedList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class SymmetricBinaryTree {
+/*
+ * Take the left sub tree and right sub tree. 
+ * - Run Breadth first on both
+ * - On Left sub tree, Breadth first runs from left to right
+ * - On Right sub tree, Breadth first runs from right to left
+ * */
+	public boolean isSymmetricItr(TreeNode root) {
 
-	public boolean isSymmetric(TreeNode root) {
+		LinkedList<TreeNode> leftFirst = new LinkedList<TreeNode>();
+		LinkedList<TreeNode> rightFirst = new LinkedList<TreeNode>();
 
-		Deque<TreeNode> lQueue = new LinkedList<TreeNode>();
-		Deque<TreeNode> rQueue = new LinkedList<TreeNode>();
-
-		if (root==null){
+		if (root==null || (root.left==null && root.right==null)){
 			return true;
 		}
+		leftFirst.add(root.left);
+		rightFirst.add(root.right);
 
-		if (root.left==null && root.right==null){
-			return true;
-		}
+		while (!leftFirst.isEmpty()||!rightFirst.isEmpty()){
+			TreeNode left = leftFirst.remove();
+			TreeNode right = rightFirst.remove();
 
-		lQueue.addFirst(root.left);
-		rQueue.addFirst(root.right);
-
-		while (!lQueue.isEmpty() || !rQueue.isEmpty()){
-
-			TreeNode tempLeft = lQueue.removeFirst();
-			TreeNode tempRight = rQueue.removeFirst();
-
-			if (tempLeft !=null && tempRight!=null){
-				if (tempLeft.val == tempRight.val){
-					lQueue.addFirst(tempLeft.left);
-					lQueue.addFirst(tempLeft.right);
-					rQueue.addFirst(tempRight.right);
-					rQueue.addFirst(tempRight.left);
-				}
-				else{
+			if (right!=null && left!=null){
+				if (right.val==left.val){
+					leftFirst.add(left.left);
+					leftFirst.add(left.right);
+					rightFirst.add(right.right);
+					rightFirst.add(right.left);
+				}else{
 					return false;
 				}
-			}
-			else if (tempLeft !=null || tempRight!=null) {
+			}else if (right!=null && left!=null){
 				return false;
 			}
-
 		}
 		return true;
+	}
+/*
+ * Modified depth first search
+ * */
+	public boolean isSymmetric(TreeNode root) {
+		if (root ==null) 
+			return true;
+		return isSymmetricSubTree(root.left, root.right);
+	}
+
+	public boolean isSymmetricSubTree(TreeNode left,  TreeNode right){
+		if(left ==null && right ==null) return true;
+		if(left==null || right ==null) return false;
+		if(left.val == right.val ) {
+			return isSymmetricSubTree(left.left, right.right) && isSymmetricSubTree(left.right, right.left);
+		}else 
+			return false;
 	}
 
 	public static void main(String[] args) {
