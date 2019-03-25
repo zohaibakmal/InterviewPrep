@@ -10,7 +10,7 @@ public class DetectCycle {
         ListNode fastPointer = head;
         boolean hasCycle = false;
         
-        while(slowPointer!=null && fastPointer!=null &&fastPointer.next!=null){
+        while(fastPointer!=null &&fastPointer.next!=null){
             slowPointer = slowPointer.next;
             fastPointer = fastPointer.next.next;
             if (slowPointer == fastPointer){
@@ -30,9 +30,34 @@ public class DetectCycle {
         }
         return null;
     }
+
+
+    public boolean hasCycle(ListNode head) {
+
+        if (head==null){
+            return false;
+        }
+        ListNode slowPointer = head;
+        ListNode fastPointer = head;
+
+
+        while (fastPointer !=null && fastPointer.next !=null){
+            slowPointer = slowPointer.next;
+            fastPointer = fastPointer.next.next;
+            if (slowPointer == fastPointer){
+                return true;
+            }
+        }
+
+        return false;
+    }
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		ListNode node = new ListNode(1);
+        ListNode node2 = new ListNode(2);
+        node.next = node2;
+        node2.next = node;
+        DetectCycle cycle = new DetectCycle();
 
 	}
 

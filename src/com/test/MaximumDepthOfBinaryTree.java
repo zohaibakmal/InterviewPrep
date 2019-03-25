@@ -13,6 +13,10 @@ public class MaximumDepthOfBinaryTree {
 		TreeNode(int x) { val = x; }
 	}
 
+	/*
+	* Time complexity = O(n)
+	* */
+
 	public int maxDepth(TreeNode root) {
         if (root==null)
         	return 0;

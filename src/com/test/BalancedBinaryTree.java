@@ -2,6 +2,16 @@ package com.test;
 
 public class BalancedBinaryTree {
 
+	/*
+	* Time: O(N)
+	* Space: O(H)
+	*
+	* This improved algorithm works by checking the height of each subtree as we recurse down from the root.
+	* On each node, we recursively get the heights of the left and right subtrees through the checkHeight
+	* method. If the subtree is balanced, then checkHeight will return the actual height of the subtree. If the
+	* subtree is not balanced, then checkHeight will return an error code. We will immediately break and
+	* return an error code from the current call
+	* */
 	public int checkHeight(Node root){
 		if (root==null){
 			return 0;
@@ -35,6 +45,40 @@ public class BalancedBinaryTree {
 		}else{
 			return true;
 		}
+	}
+
+
+
+
+
+	/*
+	 * Time: O(n(log n))
+	 * Since for each node, we recurse through its entire substree.
+	 * Space: O(H)
+	 * */
+	public boolean isBalanced(TreeNode root) {
+		if(root==null){
+			return true;
+		}
+		int right = getHeight(root.right);
+		int left = getHeight(root.left);
+
+		if(Math.abs(right-left)>1){
+			return false;
+		}
+		return isBalanced(root.left) && isBalanced(root.right);
+
+	}
+
+	public int getHeight(TreeNode root){
+		if(root==null){
+			return -1;
+		}
+
+		int rightHeight = getHeight(root.right);
+		int leftHeight = getHeight(root.left);
+
+		return Math.max(getHeight(root.left), getHeight(root.right)) +1;
 	}
 	
 	public static void main(String[] args) {

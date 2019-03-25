@@ -6,11 +6,11 @@ import java.util.Hashtable;
  * The idea is mainly based on the help of two pointers (begin and end position of the window) 
  * and two tables (needToFind and hasFound) while traversing S. needToFind stores the total count 
  * of a character in T and hasFound stores the total count of a character met so far. We also use 
- * a count variable to store the total characters in T that’s met so far (not counting characters 
- * where hasFound[x] exceeds needToFind[x]). When count equals T‘s length, we know a valid window is found.
+ * a count variable to store the total characters in T thatï¿½s met so far (not counting characters 
+ * where hasFound[x] exceeds needToFind[x]). When count equals Tï¿½s length, we know a valid window is found.
  * 
- * Firstly, we will move the “end” pointer right, until we find all characters. 
- * When we move pointer “end”, we will check if the number of this character is smaller than we need to found. 
+ * Firstly, we will move the ï¿½endï¿½ pointer right, until we find all characters. 
+ * When we move pointer ï¿½endï¿½, we will check if the number of this character is smaller than we need to found. 
  * If it is, we will increase one to a total counter and increase one to the number of this character. 
  * Otherwise only the number of this character is increased.
  * 

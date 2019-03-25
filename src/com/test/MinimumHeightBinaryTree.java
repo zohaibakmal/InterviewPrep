@@ -6,19 +6,36 @@ public class MinimumHeightBinaryTree {
 
 	public int minDepth(TreeNode root) {
 
-		if(root==null) return 0;
+		// Corner case. Should never be hit unless the code is
+		// called on root = NULL
+		if (root == null)
+			return 0;
 
-		if(root.left==null){
-			return 1+minDepth(root.right);
-		}else if(root.right==null){
-			return 1+minDepth(root.left);
-		}else
-			return 1+Math.min(minDepth(root.left), minDepth(root.right));        
+		// Base case : Leaf Node. This accounts for height = 1.
+		if (root.left == null && root.right == null)
+			return 1;
+
+		// If left subtree is NULL, recur for right subtree
+		if (root.left == null)
+			return minDepth(root.right) + 1;
+
+		// If right subtree is NULL, recur for right subtree
+		if (root.right == null)
+			return minDepth(root.left) + 1;
+
+		return Math.min(minDepth(root.left),
+				minDepth(root.right)) + 1;
+
 	}
 	
 	public int minDepth2(TreeNode root) {
-        if(root == null) return 0;
+		// Corner case. Should never be hit unless the code is
+		// called on root = NULL
+        if(root == null)
+        	return 0;
+
         int left = minDepth2(root.left);
+
         int right = minDepth2(root.right);
         if (left==0 || right==0){
             return Math.max(left,right)+1;

@@ -63,11 +63,11 @@ public class LinkedListAddition {
 		System.out.println("Done");
 	}
 }
-class ListNode {
-	int val;
-	ListNode next;
-	ListNode(int x) {
-		val = x;
-		next = null;
-	}
-}
+//class ListNode {
+//	int val;
+//	ListNode next;
+//	ListNode(int x) {
+//		val = x;
+//		next = null;
+//	}
+//}

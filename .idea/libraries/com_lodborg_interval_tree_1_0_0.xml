@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="com.lodborg:interval-tree:1.0.0" type="repository">
+    <properties maven-id="com.lodborg:interval-tree:1.0.0" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/lodborg/interval-tree/1.0.0/interval-tree-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

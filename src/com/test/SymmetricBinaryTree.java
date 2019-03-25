@@ -35,7 +35,7 @@ public class SymmetricBinaryTree {
 				}else{
 					return false;
 				}
-			}else if (right!=null && left!=null){
+			}else if (right!=null || left!=null){
 				return false;
 			}
 		}

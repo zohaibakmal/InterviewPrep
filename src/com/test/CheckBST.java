@@ -4,46 +4,55 @@ package com.test;
 
 public class CheckBST {
 
-	//maintain a min and max at each node.
-	public boolean checkBST(Node n){
-		return checkBST(n, Integer.MIN_VALUE, Integer.MAX_VALUE);
+
+	public boolean isValidBSTRcr(TreeNode root) {
+		return checkBST (root, null,null);
 	}
-	
-	public boolean checkBST(Node n, int min, int max){
-		//base case
-		if (n==null){ 
+
+	public boolean checkBST (TreeNode root, Integer minValue, Integer maxValue){
+		if(root==null){
 			return true;
 		}
-		
-		if (n.data<=min || n.data>max){
+		if((minValue!=null && root.val<=minValue) || (maxValue!=null && root.val>= maxValue)){
 			return false;
 		}
-		
 		//Check whether left tree is a BST. Left node should be greater than the global min and less than the root
 		//Check whether right tree is a BST. Right node should be less than the global max and greater than the root
-		if (!checkBST(n.left , min, n.data) || !checkBST(n.right, n.data, max)){
+		return checkBST(root.left, minValue, root.val) && checkBST(root.right, root.val, maxValue);
+	}
+
+
+	/*
+	* Space = O(H)
+	* Time = O(n)
+	* We make use of the fact that inorder traversal gives us sorted list.
+	* We don't need to maintain the list. All we need to do is compare the last
+	* item visited to see if it is less then the current.
+	* */
+
+	Integer lastValue = null;
+	public boolean isValidBST(TreeNode root) {
+		if(root==null){
+			return true;
+		}
+		boolean rv = true;
+		if(!isValidBST(root.left)){
+			return false;
+		}
+		if(lastValue!=null && lastValue>=root.val){
+			return false;
+		}
+		lastValue = root.val;
+		if(!isValidBST(root.right)){
 			return false;
 		}
 		return true;
-		
 	}
-	
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
-	
-	
-	private static class Node { 
-		Node left; 
-		Node right; 
-		int data;
 
-		Node(int newData) { 
-			left = null; 
-			right = null; 
-			data = newData; 
-		} 
-	}
 
 }

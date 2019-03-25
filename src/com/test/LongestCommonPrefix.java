@@ -18,11 +18,11 @@ public class LongestCommonPrefix {
 		// Outer loop to select an index and character to compare
 		for (int i=0; i<strs[0].length();i++){
 			char current=strs[0].charAt(i);
-			
-			//Inner loop to compare all the current character across all Strings 
-			for (String ref:strs){
+
+			//Inner loop to compare all the current character across all Strings
+			for (int j=1; j<strs.length; j++){
 				//If the current String is smaller than our reference string or the characters don't match.
-				if (ref.length()<=i || ref.charAt(i)!=current){
+				if (strs[j].length()-1<i || strs[j].charAt(i)!=current){
 					return sb.toString();
 				}
 			}

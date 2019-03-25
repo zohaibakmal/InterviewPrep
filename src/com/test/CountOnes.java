@@ -8,6 +8,8 @@ public class CountOnes {
 			if((input & 1)==1){
 				count++;
 			}
+			// >> is for signed right shift.
+			// >>> is for unsigned right shift.
 			input =input>>>1;
 		}
 		return count;
@@ -15,7 +17,7 @@ public class CountOnes {
 	
 	public static void main(String[] args) {
 		CountOnes CO = new CountOnes();
-		System.out.println(CO.countOnes(3));
+		System.out.println(CO.countOnes(-3));
 
 	}
 

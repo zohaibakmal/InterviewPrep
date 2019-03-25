@@ -2,31 +2,48 @@ package com.test;
 
 public class magicIndex {
 
+//	public int findMagicIndex(int [] array){
+//
+//		int end = array.length-1;
+//		int mid = end/2;
+//		int low = 0;
+//
+//		return findIndex(array, low, end);
+//	}
+//
+//	public int findIndex(int [] array, int low, int high ){
+//		int mid = (low+high)/2;
+//
+//		if (low>=high){
+//			return -1;
+//		}
+//		if (mid==array[mid]){
+//			return mid;
+//		}
+//		else if (array[mid]>mid){ // look into left half
+//			return findIndex(array, low, mid);
+//		}
+//		else { // look into left half
+//			return findIndex(array, mid, high);
+//		}
+//
+//	}
+
+
 	public int findMagicIndex(int [] array){
-		
-		int end = array.length-1;
-		int mid = end/2;
-		int low = 0;
-		
-		return findIndex(array, low, end);
-	}
-	
-	public int findIndex(int [] array, int low, int high ){
-		int mid = (low+high)/2;
-		
-		if (low>=high){
-			return -1;
+		int lo = 0;
+		int hi = array.length;
+		int mid = (lo+hi)/2;
+		while(lo<=hi){
+			if(array[mid]==mid){
+				return mid;
+			}else if(array[mid]>mid){
+				hi = mid-1;
+			}else{
+				lo = mid+1;
+			}
 		}
-		if (mid==array[mid]){
-			return mid;
-		}
-		else if (array[mid]>mid){ // look into left half
-			return findIndex(array, low, mid);
-		}
-		else { // look into left half
-			return findIndex(array, mid, high);
-		}
-		
+		return -1;
 	}
 	
 	public static void main(String[] args) {

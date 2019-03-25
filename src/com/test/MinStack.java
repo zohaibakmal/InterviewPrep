@@ -5,36 +5,48 @@ import java.util.Stack;
 public class MinStack {
     
 	/*
-	 * We keep a second stack to keep track of minimum at each insertion.
+	 * We maintain two stacks. One keeps alls elements in LIFO form.
+	 * The other one keep track of MIN at each level. We can keep track of min at each level by doing the following:
+	 * - At insertion time, we check if the current min is greater than value to be inserted. If it is, add new value to min stack.
+	 *  Otherwise, don't add the new value to the stack.
+	 *
+	 * - At the time of deletion, we check if the current Value to be deleted matches the value in min stack. If it is, we also pop min stack.
 	 * */
-	
-	private Stack<Integer> internal = new Stack<Integer>();
-    private Stack <Integer> mins = new Stack<Integer>();    
- 
+
+
+
+
+    Stack<Integer> stack;
+    Stack<Integer> minStack;
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<Integer>();
+        minStack = new Stack<Integer>();
+    }
+
     public void push2(int x) {
-        if (internal.empty()){
-            mins.push(x);
-        }else if(x>=mins.peek()){
-            mins.push(mins.peek());
-        }else{
-            mins.push(x);
+        if(stack.size()==0 || getMin()>=x){
+            minStack.push(x);
         }
-        internal.push(x);
-        
+        stack.push(x);
     }
- 
+
     public void pop2() {
-        internal.pop();
-        mins.pop();
+        if(top()==getMin()){
+            minStack.pop();
+        }
+        stack.pop();
     }
- 
+
     public int top2() {
-        return internal.peek();
+        return stack.peek();
     }
- 
+
     public int getMin2() {
-        return mins.peek();
+        return minStack.peek();
     }
+
+
 	
 	
 	/*

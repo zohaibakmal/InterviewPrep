@@ -16,6 +16,22 @@ public class ReverseString {
 		
 		return inputString.toString();
 	}
+
+
+	public String reverseString (String input){
+		int start = 0;
+		int end =input.length()-1;
+		char [] inputString = input.toCharArray();
+
+		while(start<end){
+			swap(inputString, start, end);
+			start++;
+			end--;
+		}
+
+
+		return inputString.toString();
+	}
 	
 	public void reverseRecusivly(char [] input, int startIndex, int endIndex){
 		
@@ -41,7 +57,7 @@ public class ReverseString {
 		//System.out.println(t.inputString);		
 		//t.reverse("123456789");
 		//System.out.println(t.inputString);	
-		t.reverseRecusivly("123456789".toCharArray(), 0, 9);
+		t.reverseString("hello");
 		System.out.println(t.reversed);
 	}
 }

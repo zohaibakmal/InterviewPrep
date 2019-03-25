@@ -72,8 +72,8 @@ public class BinaryTree {
    Inserts the given data into the binary tree. 
    Uses a recursive helper. 
   */ 
-  public void insert(int data) { 
-    root = insert(root, data); 
+  public void insert(int data) {
+  	root = insert(root, data);
   } 
  
 

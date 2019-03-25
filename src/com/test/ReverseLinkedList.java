@@ -1,25 +1,24 @@
 package com.test;
 
+/**
+ *
+ * Time: O(N)
+ * Space: O(1)
+ */
+
 public class ReverseLinkedList {
 
-	public ListNode reverseLinkedList(ListNode node){
-		
-		if (node==null || node.next ==null){
-			return node;
+	public ListNode reverseList(ListNode head) {
+		// 1->2->3->4
+		// 4 -> 3 -> 2 -> 1
+		ListNode prev = null;
+		while(head!=null){
+			ListNode temp=head.next;
+			head.next = prev;
+			prev = head;
+			head = temp;
 		}
-		
-		
-		ListNode previousNode = null;
-		ListNode nextNode;
-		
-		while (node !=null){
-			nextNode = node.next;
-			node.next = previousNode;
-			previousNode = node;
-			node = nextNode;
-		}
-		
-		return previousNode;
+		return prev;
 	}
 	
 	
@@ -32,7 +31,7 @@ public class ReverseLinkedList {
 		l3.next = null;
 		
 		ReverseLinkedList r = new ReverseLinkedList();
-		r.reverseLinkedList(l1);
+		r.reverseList(l1);
 	}
 
 }

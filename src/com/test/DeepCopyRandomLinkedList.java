@@ -1,7 +1,14 @@
 package com.test;
 
+import java.util.HashMap;
+
 public class DeepCopyRandomLinkedList {
 
+
+	/*
+	 * Space: O(N)
+	 * Time: O(1)
+	 * */
 	public static RandomListNode copyRandomList(RandomListNode head) {
 
 		if (head==null){
@@ -67,7 +74,49 @@ public class DeepCopyRandomLinkedList {
 		
 		copyRandomList(l1);
 	}
-	
+
+
+	/*
+	* Space: O(N)
+	* Time: O(N)
+	* */
+
+	public RandomListNode copyRandomListWithMap(RandomListNode head) {
+		RandomListNode fakeHead = new RandomListNode(-1);
+		RandomListNode copy = fakeHead;
+		RandomListNode prev = null;
+		HashMap<RandomListNode, RandomListNode> map = new HashMap();
+		while (head!=null){
+			RandomListNode newNode = null;
+			RandomListNode randomNode = null;
+			if(map.containsKey(head)){
+				newNode = map.get(head);
+			}else{
+				newNode = new RandomListNode(head.label);
+				map.put(head,newNode);
+			}
+
+			if(head.random!=null){
+				if(map.containsKey(head.random)){
+					newNode.random = map.get(head.random);
+				}else{
+					newNode.random = new RandomListNode(head.random.label);
+					map.put(head.random, newNode.random);
+				}
+			}
+
+			if(prev!=null){
+				prev.next = newNode;
+			}
+			prev = newNode;
+			copy.next = newNode;
+			copy = copy.next;
+			head = head.next;
+		}
+		return fakeHead.next;
+	}
+
+
 	static class RandomListNode {
 		int label;
 		RandomListNode next, random;

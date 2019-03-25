@@ -1,21 +1,48 @@
 package testing;
 
+import java.security.SecureRandom;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+
+import com.lodborg.intervaltree.DateInterval;
+import com.lodborg.intervaltree.IntervalTree;
+
+
+
 public class TestFunction {
 
-	public static void mys(int i){
-		if (i<=0){
-			return;
+
+	public static final String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+	public static final String lower = upper.toLowerCase(Locale.ROOT);
+
+	public static final String digits = "0123456789";
+
+	public static final String alphanum = upper + lower + digits;
+
+
+
+	public static String random() {
+		SecureRandom generator = new SecureRandom();
+		StringBuilder randomStringBuilder = new StringBuilder();
+		for (int i = 0; i < 32; i++){
+			randomStringBuilder.append(alphanum.charAt(generator.nextInt(alphanum.length())));
 		}
-		System.out.println(i);
-		mys(i-1);
-		System.out.println(i);
+		return randomStringBuilder.toString();
 	}
+
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-	//	mys(2);
-		//String a="ab";
-		//System.out.println(1^2);
-		System.out.println(1/10);
+		String b64 = "mock-mtn";
+
+//		System.out.println(Base);
+
 	}
 
 }

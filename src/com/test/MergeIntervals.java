@@ -7,6 +7,11 @@ import java.util.List;
 
 public class MergeIntervals {
 
+
+	/*
+	* Time: O(n*log(n)) Due to the complexity of sorting
+	* Space: O(n) Due to sorting.
+	* */
 	public List<Interval> merge(List<Interval> intervals) {
 
 		if (intervals==null||intervals.size()<2){
