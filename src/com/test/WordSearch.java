@@ -26,7 +26,7 @@ public class WordSearch {
     *
     * O(4^(n+m))
     * */
-    public boolean exist(char[][] board, String word) {
+    public boolean exist2(char[][] board, String word) {
         //We need to maintain a list of previously visited indexes so we don't revisit them in the same search space
         boolean [][] visited = new boolean [board.length][board[0].length];
         boolean rv = false;
@@ -34,14 +34,14 @@ public class WordSearch {
         //We start our search from every possible index;
         for (int i=0; i<board.length; i++){
             for (int j=0; j<board[i].length; j++){
-                rv = rv || exisit(board, i, j , word, 0, visited);
+                rv = rv || exisit2(board, i, j , word, 0, visited);
             }
         }
         return rv;
 
     }
 
-    private boolean exisit(char[][] board, int i, int j, String word, int idx, boolean [][] visited){
+    private boolean exisit2(char[][] board, int i, int j, String word, int idx, boolean [][] visited){
         //Base case: If we are able to reach this, then we have found our match
         if (idx == word.length()){
             return true;
@@ -58,14 +58,37 @@ public class WordSearch {
 
         //Mark the previous as visited
         visited [i][j] = true;
-        boolean rv =  exisit(board, i+1, j, word, idx+1,visited) ||
-                exisit(board, i, j+1, word, idx+1, visited) ||
-                exisit(board, i, j-1, word, idx+1, visited) ||
-                exisit(board, i-1, j, word, idx+1, visited);
+        boolean rv =  exisit2(board, i+1, j, word, idx+1,visited) ||
+                exisit2(board, i, j+1, word, idx+1, visited) ||
+                exisit2(board, i, j-1, word, idx+1, visited) ||
+                exisit2(board, i-1, j, word, idx+1, visited);
 
         //Restart
         visited [i][j] = false;
         return rv;
+    }
+
+
+
+    public boolean exist(char[][] board, String word) {
+        return exists(board, 0, 0, word, 0);
+    }
+
+    private boolean exists(char[][] board, int x, int y, String word, int wordIdx){
+        if(x>=board.length || y>=board[x].length || wordIdx>=word.length()){
+            return false;
+        }
+        char curr = board[x][y];
+        if(curr==word.charAt(wordIdx)){
+            if(wordIdx==word.length()-1){
+                return true;
+            }
+            return exists(board, x, y+1, word, wordIdx+1)
+                    || exists(board, x+1, y, word, wordIdx+1);
+        }
+        return exists(board, x, y+1, word, wordIdx)
+                || exists(board, x+1, y, word, wordIdx);
+
     }
 
 }

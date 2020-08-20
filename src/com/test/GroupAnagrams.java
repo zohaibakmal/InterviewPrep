@@ -7,9 +7,21 @@ import java.util.LinkedList;
 import java.util.List;
 
 /*
- * Store strings as anagrams. 
- * Sort the string. That will become a key. Insert the actual string into a linked list
- * Return all values from the hashmap at the end.
+ * Group strings that are anagrams.
+ *
+ * Example:
+ *
+ * Input: ["eat", "tea", "tan", "ate", "nat", "bat"],
+ * Output:
+ * [
+ * 	["ate","eat","tea"],
+ * 	["nat","tan"],
+ * 	["bat"]
+ * ]
+ *
+ * Note:
+ * - All inputs will be in lowercase.
+ * - The order of your output does not matter.
  * */
 
 public class GroupAnagrams {
